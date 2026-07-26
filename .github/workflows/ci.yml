@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Test
+        run: pytest -q
+
+      - name: Smoke-test CLI
+        run: |
+          tf-graph-md --version
+          out=$(tf-graph-md --input examples/graph.dot --group-modules)
+          echo "$out"
+          echo "$out" | grep -q '^graph LR'
+          echo "$out" | grep -q 'subgraph module_vpc'
+          echo "$out" | grep -q 'aws_instance.web'
+          test "$(echo "$out" | grep -c -- '-->')" -eq 2

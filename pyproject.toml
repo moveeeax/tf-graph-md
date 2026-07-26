@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tf-graph-md"
+version = "0.1.0"
+description = "Turn a terraform graph into a Mermaid diagram you can paste into any README."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "Michael Tarassov", email = "michael@tarassov.me" }]
+keywords = ["terraform", "mermaid", "graph", "documentation", "visualization", "iac"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+tf-graph-md = "tf_graph_md.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/moveeeax/tf-graph-md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
