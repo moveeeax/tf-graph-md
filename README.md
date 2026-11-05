@@ -1,7 +1,7 @@
 # tf-graph-md
 
 [![ci](https://github.com/moveeeax/tf-graph-md/actions/workflows/ci.yml/badge.svg)](https://github.com/moveeeax/tf-graph-md/actions/workflows/ci.yml)
-[![python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
+[![python](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 > Turn your Terraform dependency graph into a Mermaid diagram you can paste into any README.
@@ -34,7 +34,7 @@ graph LR
 ## Install
 
 ```bash
-pip install tf-graph-md
+pip install git+https://github.com/moveeeax/tf-graph-md
 ```
 
 ## Usage
